@@ -4,7 +4,7 @@
 I was searching for a clear, simple, standardized and portable way to import config into projects, and to my surprise I couldn't find anything like that. So, I'm working on creating a collection of modules or includes for various languages I work in, in order to standardize the way that things are done.
 
 By including one of these modules, variables are read in order from three sources, in this order:
-1. Etcd server
+1. Etcd v3 service
 2. Environment variables
 3. Command line arguments
 
@@ -43,3 +43,5 @@ The configuration is now agnostic of the language of the script/service. The exa
 
 ## Notes
 - The Etcd server can be overridden by using the environment variable `ETCD_CONN`, defaulting to `http://localhost:2379`.
+- These scripts all make use of Etcd v3 gRPC JSON proxy. Currently, the gRPC proxy has a prefix of /v3alpha, which I don't expect to be dropped any time soon, but I'm making it configurable as well.
+- I could have used gRPC without the JSON proxy, however that adds additional weight to the modules, and in some cases far outweighs the project I'm trying to augment.
