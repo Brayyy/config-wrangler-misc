@@ -59,9 +59,10 @@ function configEEC ($mConfig) {
   if (array_key_exists('envNameSpace', $mConfig)) {
     foreach ($_ENV as $envK => $envV) {
       // Skip env keys which don't start with prefix
-      if (substr($envK, 0, strlen($mConfig['envNameSpace'])) !== $mConfig['envNameSpace']) continue;
+      $envPrefix = $mConfig['envNameSpace'] . '_';
+      if (substr($envK, 0, strlen($envPrefix)) !== $envPrefix) continue;
       // Standardize the key
-      $key = stripLowerCamel($envK, $mConfig['envNameSpace'] . '_');
+      $key = stripLowerCamel($envK, $envPrefix);
       $foundVars[$key] = $envV;
     }
   }
