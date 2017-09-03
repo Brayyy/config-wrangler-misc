@@ -12,6 +12,7 @@
  * @param mConfig['envNameSpace'] String of ENV namespace prefix to scan for. ex: 'VAST'
  */
 function configEEC ($mConfig) {
+  $foundVars = array();
   /**
    * Convert a string to lowerCamelCase, optionally strip off a prefix
    * @param str String to be converted
@@ -45,7 +46,6 @@ function configEEC ($mConfig) {
     $result = file_get_contents("$etcdConn/$etcdPath/kv/range", false, $context);
     if ($result === FALSE) exit("ERROR: Unable to get config. Failed file_get_contents()\n");
     $decoded = json_decode($result, true);
-    $foundVars = array();
     // Iterate over all found kvs, base64 decoding the key/value, then standardize the key
     if (array_key_exists('kvs', $decoded) && count($decoded['kvs']) > 0) {
       foreach ($decoded['kvs'] as $kv) {
