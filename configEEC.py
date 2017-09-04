@@ -64,9 +64,9 @@ def configEEC(mConfig):
 
     # Environment Vars
     if 'envNameSpace' in mConfig:
+        envPrefix = mConfig['envNameSpace'] + '_'
         for envK in os.environ:
             # Skip env keys which don't start with prefix
-            envPrefix = mConfig['envNameSpace'] + '_'
             if not envK.startswith(envPrefix):
                 continue
             # Standardize the key
