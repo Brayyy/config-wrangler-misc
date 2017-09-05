@@ -1,7 +1,7 @@
 
-from configEEC import configEEC
+from configWrangler import configWrangler
 
-config = configEEC({
+config = configWrangler({
     'etcdNameSpace': 'cfg/flash-service/',
     'envNameSpace': 'FLASH'
 })

@@ -10,7 +10,7 @@ import re
 # that order. Vars are overridden if they are redefined, allowing special
 # config and developer control. The Etcd HTTP API is configurable using the
 # environment variable ETCD_CONN.
-def configEEC(mConfig):
+def configWrangler(mConfig):
     '''Import configuration values from Etcd, environment then CLI arguments'''
     foundVars = {}
 

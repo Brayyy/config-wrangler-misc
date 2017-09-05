@@ -11,7 +11,7 @@
  * @param mConfig['etcdNameSpace'] String of etcd namespace prefix to scan for. ex: 'cfg/vast-service/'
  * @param mConfig['envNameSpace'] String of ENV namespace prefix to scan for. ex: 'VAST'
  */
-function configEEC ($mConfig) {
+function configWrangler ($mConfig) {
   $foundVars = array();
   /**
    * Convert a string to lowerCamelCase, optionally strip off a prefix
