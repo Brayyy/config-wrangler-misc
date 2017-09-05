@@ -79,6 +79,18 @@ function configWrangler ($mConfig) {
     if ($arg[1]) $foundVars[$key] = $argParts[1];
   }
 
+  // Verify required keys
+  if (array_key_exists('requiredKeys', $mConfig)) {
+    foreach ($mConfig['requiredKeys'] as $reqKey) {
+      if (!array_key_exists($reqKey, $foundVars)) {
+        exit(
+          'config-wrangler: Missing required ' .
+          'config key "' . $reqKey . '", exiting.' . "\n"
+        );
+      }
+    }
+  }
+
   return $foundVars;
 }
 ?>

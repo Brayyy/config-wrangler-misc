@@ -50,7 +50,7 @@ def configWrangler(mConfig):
         r = requests.post(url, data=json.dumps(payload), headers=headers)
         if r.status_code != 200:
             print "ERROR: Unable to get config."
-            sys.exit(0)
+            sys.exit(1)
         decoded = json.loads(r.text)
         # Iterate over all found kvs, base64 decoding the key/value
         # ...then standardize the key
@@ -84,5 +84,15 @@ def configWrangler(mConfig):
         newKey = stripLowerCamel(argParts[0], '')
         if len(argParts) == 2:
             foundVars[newKey] = argParts[1]
+
+    # Verify required keys
+    if 'requiredKeys' in mConfig:
+        for reqKey in mConfig['requiredKeys']:
+            if reqKey not in foundVars:
+                print ((
+                    'config-wrangler: Missing required '
+                    'config key "%s", exiting.' % reqKey
+                ))
+                sys.exit(1)
 
     return foundVars

@@ -25,7 +25,8 @@ Hypothetical web project is configured as so in Python or PHP:
 from configWrangler import configWrangler
 config = configWrangler({
     'etcdNameSpace': 'cfg/web-service/',
-    'envNameSpace': 'WEBSVC'
+    'envNameSpace': 'WEBSVC',
+    'requiredKeys': ['port', 'serverName', 'maxConnects']
 })
 ```
 ```php
@@ -33,7 +34,8 @@ config = configWrangler({
 include_once('./configWrangler.php');
 $config = configWrangler(array(
     'etcdNameSpace' => 'cfg/web-service/',
-    'envNameSpace' => 'WEBSVC'
+    'envNameSpace' => 'WEBSVC',
+    'requiredKeys' => array('port', 'serverName', 'maxConnects')
 ));
 ```
 
